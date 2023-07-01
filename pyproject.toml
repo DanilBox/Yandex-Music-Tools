@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "yandex-music-tools"
+version = "1.0.0"
+description = "Yandex Music Tools"
+authors = ["Danil Ovchinnikov <Danil42Worker@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/DanilBox/Yandex-Music-Tools"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+yandex-music = "2.1.1"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.4.1"
+black = "^23.3.0"
+isort = "^5.12.0"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.mypy]
+python_version = 3.11
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    'yandex_music.*',
+]
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

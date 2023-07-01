@@ -1,0 +1,14 @@
+# IDE
+.idea
+*.iml
+
+# Python
+*.pyc
+__pycache__/
+.mypy_cache
+
+# OS
+.DS_Store
+
+# Project
+tracks
