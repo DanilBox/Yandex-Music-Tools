@@ -29,7 +29,7 @@ def save_wrap(func: MethodType) -> TracksList | None:
     object_name = func.__name__.replace("users_", "").replace("_tracks", "")
 
     if result is None:
-        exit('Ошибка при получения списка треков')
+        exit("Ошибка при получения списка треков")
 
     save_tracks(result, object_name)
     return result
