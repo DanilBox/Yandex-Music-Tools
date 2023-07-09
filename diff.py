@@ -16,6 +16,9 @@ class DiffResult(NamedTuple):
     added_tracks: list[TrackShort]
     deleted_tracks: list[TrackShort]
 
+    def empty(self) -> bool:
+        return len(self.added_tracks) == 0 and len(self.deleted_tracks) == 0
+
 
 def diff_tracks(tracks_from: list[TrackShort], tracks_to: list[TrackShort]) -> DiffResult:
     return DiffResult(
@@ -76,8 +79,11 @@ def show_diff(result: DiffResult) -> None:
 
 
 def show_diff_object(object_type: str) -> None:
-    print(f"Разница по объекту {object_type}")
-    show_diff(diff_object(object_type))
+    result = diff_object(object_type)
+
+    if not result.empty():
+        print(f"Разница по объекту {object_type}")
+        show_diff(result)
 
 
 def main() -> None:
