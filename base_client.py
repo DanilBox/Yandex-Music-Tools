@@ -5,6 +5,11 @@ from yandex_music import Client
 
 
 @cache
+def null_client() -> Client:
+    return Client()
+
+
+@cache
 def base_client() -> Client:
     if (token := os.getenv("TOKEN")) is None:
         exit("Не передан токен")

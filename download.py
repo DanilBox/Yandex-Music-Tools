@@ -1,4 +1,5 @@
 import datetime
+import json
 from pathlib import Path
 from types import MethodType
 
@@ -20,6 +21,10 @@ def save_json(content: str, object_type: str, date: str = str(datetime.date.toda
 
 
 def save_tracks(tracks: TracksList, object_type: str) -> None:
+    if len(tracks) != 0:
+        full_tracks = [track.to_dict() for track in tracks.fetch_tracks()]
+        save_json(json.dumps(full_tracks, ensure_ascii=True), f"{object_type}-full")
+
     save_json(tracks.to_json(), object_type)
     print(f"Сохранено '{len(tracks)}' треков типа '{object_type}'!")
 
