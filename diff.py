@@ -29,8 +29,8 @@ def diff_object(object_type: str) -> DiffResult:
 
 
 def track_info(track: Track) -> str:
-    artists = " ".join([artist.name for artist in track.artists])
-    return f"'{track.title}' by '{artists}'"
+    artists = ", ".join([artist.name for artist in track.artists])
+    return f"'{track.title}' by '{artists}' ({track.track_id})"
 
 
 def show_diff(result: DiffResult) -> None:
