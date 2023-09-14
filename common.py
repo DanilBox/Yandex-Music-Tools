@@ -12,6 +12,7 @@ def get_tracks_by_date(object_type: str, date: str = str(datetime.date.today()))
     if not track_file.exists():
         exit(f"Файла '{track_file.name}' не существует")
 
+    # TODO: use [Track.de_list()]
     result: TracksList | None = TracksList.de_json(json.loads(track_file.read_text()), null_client())
     if result is None:
         exit("Ошибка при получение списка треков")
