@@ -22,10 +22,11 @@ def save_json(content: str, object_type: str, date: str = str(datetime.date.toda
 
 def save_tracks(tracks: TracksList, object_type: str) -> None:
     if len(tracks) != 0:
-        full_tracks = [track.to_dict() for track in tracks.fetch_tracks()]
-        save_json(json.dumps(full_tracks, ensure_ascii=True), f"{object_type}-full")
+        dump = [track.to_dict() for track in tracks.fetch_tracks()]
+    else:
+        dump = []
 
-    save_json(tracks.to_json(), object_type)
+    save_json(json.dumps(dump, ensure_ascii=False), object_type)
     print(f"Сохранено '{len(tracks)}' треков типа '{object_type}'!")
 
 

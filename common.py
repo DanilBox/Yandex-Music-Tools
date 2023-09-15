@@ -2,22 +2,22 @@ import datetime
 import json
 from pathlib import Path
 
-from yandex_music import TrackShort, TracksList
+from yandex_music import Track
 
 from base_client import null_client
 
 
-def get_tracks_by_date(object_type: str, date: str = str(datetime.date.today())) -> list[TrackShort]:
+def get_tracks_by_date(object_type: str, date: str = str(datetime.date.today())) -> list[Track]:
     track_file = Path(f"tracks/{date}/{object_type}-{date}.json")
     if not track_file.exists():
         exit(f"Файла '{track_file.name}' не существует")
 
-    # TODO: use [Track.de_list()]
-    result: TracksList | None = TracksList.de_json(json.loads(track_file.read_text()), null_client())
-    if result is None:
-        exit("Ошибка при получение списка треков")
+    data = json.loads(track_file.read_text())
+    if len(data) == 0:
+        return []
 
-    return result.tracks
+    tracks: list[Track] = Track.de_list(data, null_client())
+    return tracks
 
 
 def get_parent_save_date(this_date: str = str(datetime.date.today())) -> str:

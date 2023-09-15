@@ -1,20 +1,20 @@
 from typing import NamedTuple
 
-from yandex_music import Track, TrackShort
+from yandex_music import Track
 
 from base_client import null_client
 from common import get_parent_save_date, get_tracks_by_date
 
 
 class DiffResult(NamedTuple):
-    added_tracks: list[TrackShort]
-    deleted_tracks: list[TrackShort]
+    added_tracks: list[Track]
+    deleted_tracks: list[Track]
 
     def empty(self) -> bool:
         return len(self.added_tracks) == 0 and len(self.deleted_tracks) == 0
 
 
-def diff_tracks(tracks_from: list[TrackShort], tracks_to: list[TrackShort]) -> DiffResult:
+def diff_tracks(tracks_from: list[Track], tracks_to: list[Track]) -> DiffResult:
     return DiffResult(
         added_tracks=list(set(tracks_to) - set(tracks_from)),
         deleted_tracks=list(set(tracks_from) - set(tracks_to)),
@@ -36,13 +36,13 @@ def track_info(track: Track) -> str:
 def show_diff(result: DiffResult) -> None:
     print("Новые добавленные треки:")
     for new_track in result.added_tracks:
-        print(track_info(new_track.fetch_track()))
+        print(track_info(new_track))
 
     print()
 
     print("Удалённые треки:")
     for del_track in result.deleted_tracks:
-        print(track_info(del_track.fetch_track()))
+        print(track_info(del_track))
 
     print()
 
