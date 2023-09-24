@@ -1,5 +1,6 @@
 import datetime
 import json
+from enum import StrEnum
 from pathlib import Path
 
 from yandex_music import Track
@@ -7,7 +8,12 @@ from yandex_music import Track
 from base_client import null_client
 
 
-def get_tracks_by_date(object_type: str, date: str = str(datetime.date.today())) -> list[Track]:
+class TrackType(StrEnum):
+    LIKES = "likes"
+    DISLIKES = "dislikes"
+
+
+def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.date.today())) -> list[Track]:
     track_file = Path(f"tracks/{date}/{object_type}-{date}.json")
     if not track_file.exists():
         exit(f"Файла '{track_file.name}' не существует")

@@ -3,7 +3,7 @@ from typing import NamedTuple
 from yandex_music import Track
 
 from base_client import null_client
-from common import get_parent_save_date, get_tracks_by_date
+from common import TrackType, get_parent_save_date, get_tracks_by_date
 
 
 class DiffResult(NamedTuple):
@@ -58,8 +58,8 @@ def show_diff_object(object_type: str) -> None:
 def main() -> None:
     _ = null_client()
 
-    show_diff_object("likes")
-    show_diff_object("dislikes")
+    show_diff_object(TrackType.LIKES)
+    show_diff_object(TrackType.DISLIKES)
 
 
 if __name__ == "__main__":
