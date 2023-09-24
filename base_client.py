@@ -3,10 +3,17 @@ from functools import cache
 
 from yandex_music import Client
 
+from utils import hidden_prints
+
+
+def new_client(token: str | None = None) -> Client:
+    with hidden_prints() as _:
+        return Client(token)
+
 
 @cache
 def null_client() -> Client:
-    return Client()
+    return new_client()
 
 
 @cache
@@ -14,7 +21,7 @@ def base_client() -> Client:
     if (token := os.getenv("TOKEN")) is None:
         exit("Не передан токен")
 
-    client = Client(token).init()
+    client = new_client(token).init()
 
     if (status := client.account_status()) is None:
         exit("Ошибка при получение аккаунта")
