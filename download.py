@@ -26,7 +26,7 @@ def save_tracks(tracks: TracksList, object_type: str) -> None:
     else:
         dump = []
 
-    save_json(json.dumps(dump, ensure_ascii=False), object_type)
+    save_json(json.dumps(dump), object_type)
     print(f"Сохранено '{len(tracks)}' треков типа '{object_type}'!")
 
 
