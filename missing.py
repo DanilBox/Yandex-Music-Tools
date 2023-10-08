@@ -4,7 +4,8 @@ from typing import Iterator
 from yandex_music import Track
 
 from common import TrackType, get_date_saved_tracks
-from diff import diff_tracks, track_info
+from config import get_config_section
+from diff import diff_tracks, get_track_info
 
 
 @cache
@@ -22,6 +23,7 @@ def grouping_dates(saved_folder: list[str]) -> Iterator[tuple[str, str]]:
 
 def main() -> None:
     saved_folder = get_date_saved_tracks()
+    fingerprints: list[str] = get_config_section("missing").get("fingerprints", [])
 
     missing_tracks: set[Track] = set()
     for first_date, second_date in grouping_dates(saved_folder):
@@ -34,7 +36,11 @@ def main() -> None:
 
     print("Пропавшие треки:")
     for missing_track in missing_tracks - last_saved_track:
-        print(track_info(missing_track))
+        track_info = get_track_info(missing_track)
+        if track_info in fingerprints:
+            continue
+
+        print(track_info)
 
 
 if __name__ == "__main__":

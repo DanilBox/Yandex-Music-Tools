@@ -28,7 +28,7 @@ def diff_object(object_type: str) -> DiffResult:
     return diff_tracks(parent_track, this_track)
 
 
-def track_info(track: Track) -> str:
+def get_track_info(track: Track) -> str:
     artists = ", ".join(sorted([artist.name for artist in track.artists]))
     return f"'{track.title}' by '{artists}' ({track.track_id})"
 
@@ -36,13 +36,13 @@ def track_info(track: Track) -> str:
 def show_diff(result: DiffResult) -> None:
     print("Новые добавленные треки:")
     for new_track in result.added_tracks:
-        print(track_info(new_track))
+        print(get_track_info(new_track))
 
     print()
 
     print("Удалённые треки:")
     for del_track in result.deleted_tracks:
-        print(track_info(del_track))
+        print(get_track_info(del_track))
 
     print()
 
