@@ -7,14 +7,23 @@ from yandex_music import Track
 
 from base_client import null_client
 
+SAVED_FOLDER = Path("tracks")
+
 
 class TrackType(StrEnum):
     LIKES = "likes"
     DISLIKES = "dislikes"
 
 
+def get_date_saved_tracks() -> list[str]:
+    saved_date = [str(path.name) for path in SAVED_FOLDER.iterdir() if path.is_dir()]
+    saved_date.sort()
+
+    return saved_date
+
+
 def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.date.today())) -> list[Track]:
-    track_file = Path(f"tracks/{date}/{object_type}-{date}.json")
+    track_file = SAVED_FOLDER / Path(f"{date}/{object_type}-{date}.json")
     if not track_file.exists():
         exit(f"Файла '{track_file.name}' не существует")
 
@@ -27,13 +36,10 @@ def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.da
 
 
 def get_parent_save_date(this_date: str = str(datetime.date.today())) -> str:
-    save_folder = Path("tracks")
-    saved_date = [str(path.name) for path in save_folder.iterdir() if path.is_dir()]
-    saved_date.sort()
+    saved_date = get_date_saved_tracks()
 
-    key = this_date
-    if key not in saved_date:
-        exit(f"Дамп '{key}' не найден")
+    if this_date not in saved_date:
+        exit(f"Дамп '{this_date}' не найден")
 
-    parent_date = saved_date[saved_date.index(key) - 1]
+    parent_date = saved_date[saved_date.index(this_date) - 1]
     return parent_date
