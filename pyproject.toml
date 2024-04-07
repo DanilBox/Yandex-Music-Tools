@@ -12,8 +12,8 @@ python = "^3.11"
 yandex-music = "2.2.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.8.0"
-black = "^23.12.1"
+mypy = "^1.9.0"
+black = "^24.3.0"
 isort = "^5.13.2"
 
 [tool.black]
