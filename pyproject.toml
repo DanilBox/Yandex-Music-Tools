@@ -12,7 +12,7 @@ python = "^3.11"
 yandex-music = "2.2.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.10.0"
+mypy = "^1.10.1"
 black = "^24.4.2"
 isort = "^5.13.2"
 
