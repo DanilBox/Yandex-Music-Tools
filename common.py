@@ -1,5 +1,6 @@
 import datetime
 import json
+import sys
 from enum import StrEnum
 from pathlib import Path
 
@@ -25,7 +26,7 @@ def get_date_saved_tracks() -> list[str]:
 def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.date.today())) -> list[Track]:
     track_file = SAVED_FOLDER / Path(f"{date}/{object_type}-{date}.json")
     if not track_file.exists():
-        exit(f"Файла '{track_file.name}' не существует")
+        sys.exit(f"Файла '{track_file.name}' не существует")
 
     data = json.loads(track_file.read_text())
     if len(data) == 0:
@@ -39,7 +40,7 @@ def get_parent_save_date(this_date: str = str(datetime.date.today())) -> str:
     saved_date = get_date_saved_tracks()
 
     if this_date not in saved_date:
-        exit(f"Дамп '{this_date}' не найден")
+        sys.exit(f"Дамп '{this_date}' не найден")
 
     parent_date = saved_date[saved_date.index(this_date) - 1]
     return parent_date

@@ -12,20 +12,32 @@ python = "^3.12"
 yandex-music = "2.2.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.11.2"
-black = "^24.8.0"
-isort = "^5.13.2"
+mypy = "^1.13.0"
+ruff = "^0.7.2"
 
-[tool.black]
+[tool.ruff]
+target-version = "py312"
 line-length = 120
-target-version = ['py311']
+exclude = [
+    ".git",
+    ".mypy_cache",
+    "test",
+]
 
-[tool.isort]
-line_length = 120
-profile = "black"
+[tool.ruff.lint]
+select = [
+    "I",
+    "UP",
+    "PL",
+    "RUF",
+]
+ignore = [
+    "RUF001",
+    "RUF002",
+]
 
 [tool.mypy]
-python_version = 3.11
+python_version = 3.12
 strict = true
 
 [[tool.mypy.overrides]]

@@ -1,4 +1,5 @@
 import os
+import sys
 from functools import cache
 
 from yandex_music import Client
@@ -19,14 +20,14 @@ def null_client() -> Client:
 @cache
 def base_client() -> Client:
     if (token := os.getenv("TOKEN")) is None:
-        exit("Не передан токен")
+        sys.exit("Не передан токен")
 
     client = new_client(token).init()
 
     if (status := client.account_status()) is None:
-        exit("Ошибка при получение аккаунта")
+        sys.exit("Ошибка при получение аккаунта")
 
     if status.account.login is None:
-        exit("Ошибка при получение аккаунта")
+        sys.exit("Ошибка при получение аккаунта")
 
     return client

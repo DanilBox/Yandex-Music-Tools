@@ -1,5 +1,6 @@
 import datetime
 import json
+import sys
 from pathlib import Path
 from types import MethodType
 
@@ -12,7 +13,7 @@ def save_json(content: str, object_type: str, date: str = str(datetime.date.toda
     track_file = Path(f"tracks/{date}/{object_type}-{date}.json")
 
     if track_file.exists():
-        exit(f"Файл '{track_file.name}' уже существует")
+        sys.exit(f"Файл '{track_file.name}' уже существует")
 
     if not (folder := track_file.parent).exists():
         folder.mkdir(parents=True)
@@ -35,7 +36,7 @@ def save_wrap(func: MethodType) -> TracksList | None:
     object_name = func.__name__.replace("users_", "").replace("_tracks", "")
 
     if result is None:
-        exit("Ошибка при получения списка треков")
+        sys.exit("Ошибка при получения списка треков")
 
     save_tracks(result, object_name)
     return result

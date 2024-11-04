@@ -1,5 +1,5 @@
+from collections.abc import Iterator
 from functools import cache
-from typing import Iterator
 
 from yandex_music import Track
 
