@@ -11,7 +11,7 @@ def main() -> None:
         for artist in track.artists:
             artists_counter.update([(artist.name, artist.id)])
 
-    print("Статистика по авторам:")
+    print(f"Статистика по {artists_counter.total()} авторам:")
     for artist, count in artists_counter.most_common():
         print(f"{artist[0]} - {count}")
 
