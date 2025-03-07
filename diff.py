@@ -1,6 +1,7 @@
+from collections.abc import Callable
 from typing import NamedTuple
 
-from yandex_music import Track
+from yandex_music import Artist, Track
 
 from base_client import null_client
 from common import TrackType, get_parent_save_date, get_tracks_by_date
@@ -12,6 +13,23 @@ class DiffResult(NamedTuple):
 
     def empty(self) -> bool:
         return len(self.added_tracks) == 0 and len(self.deleted_tracks) == 0
+
+    def get_added_tracks(self) -> list[Track]:
+        return sort_track_list(self.added_tracks)
+
+    def get_deleted_tracks(self) -> list[Track]:
+        return sort_track_list(self.deleted_tracks)
+
+
+def show_artist(artists: list[Artist]) -> str:
+    return ", ".join(sorted([artist.name for artist in artists]))
+
+
+def sort_track_list(track: list[Track]) -> list[Track]:
+    sort_artists: Callable[[list[Artist]], str] = lambda artists: show_artist(artists)
+    sort_tract: Callable[[Track], str] = lambda _track: sort_artists(_track.artists)
+
+    return sorted(track, key=sort_tract, reverse=True)
 
 
 def diff_tracks(tracks_from: list[Track], tracks_to: list[Track]) -> DiffResult:
@@ -29,19 +47,18 @@ def diff_object(object_type: str) -> DiffResult:
 
 
 def get_track_info(track: Track) -> str:
-    artists = ", ".join(sorted([artist.name for artist in track.artists]))
-    return f"'{track.title}' by '{artists}' ({track.track_id})"
+    return f"'{track.title}' by '{show_artist(track.artists)}' ({track.track_id})"
 
 
 def show_diff(result: DiffResult) -> None:
     print("Новые добавленные треки:")
-    for new_track in result.added_tracks:
+    for new_track in result.get_added_tracks():
         print(get_track_info(new_track))
 
     print()
 
     print("Удалённые треки:")
-    for del_track in result.deleted_tracks:
+    for del_track in result.get_deleted_tracks():
         print(get_track_info(del_track))
 
     print()
