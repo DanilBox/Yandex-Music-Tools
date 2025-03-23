@@ -8,18 +8,19 @@ readme = "README.md"
 repository = "https://github.com/DanilBox/Yandex-Music-Tools"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.13"
 yandex-music = { git = "https://github.com/MarshalX/yandex-music-api.git", rev = "15fc42b" }
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.14.1"
-ruff = "^0.9.2"
+mypy = "^1.15.0"
+ruff = "^0.11.2"
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 line-length = 120
 exclude = [
     ".git",
+    "__pycache__",
     ".mypy_cache",
     "test",
 ]
@@ -37,7 +38,7 @@ ignore = [
 ]
 
 [tool.mypy]
-python_version = 3.12
+python_version = 3.13
 strict = true
 
 [[tool.mypy.overrides]]
