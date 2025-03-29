@@ -9,7 +9,7 @@ repository = "https://github.com/DanilBox/Yandex-Music-Tools"
 
 [tool.poetry.dependencies]
 python = "^3.13"
-yandex-music = { git = "https://github.com/MarshalX/yandex-music-api.git", rev = "15fc42b" }
+yandex-music = {git = "https://github.com/Danil42Russia/yandex-music-api.git", rev = "danil42russia/python3.13_support"}
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.15.0"

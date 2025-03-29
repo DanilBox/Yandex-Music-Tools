@@ -767,7 +767,7 @@ name = "yandex-music"
 version = "2.2.0"
 description = "Неофициальная Python библиотека для работы с API сервиса Яндекс.Музыка."
 optional = false
-python-versions = "~=3.8"
+python-versions = ">=3.8"
 groups = ["main"]
 files = []
 develop = false
@@ -780,9 +780,9 @@ typing-extensions = "*"
 
 [package.source]
 type = "git"
-url = "https://github.com/MarshalX/yandex-music-api.git"
-reference = "15fc42b"
-resolved_reference = "15fc42bdda0e00d6eb637cfe7e41016c57d61f47"
+url = "https://github.com/Danil42Russia/yandex-music-api.git"
+reference = "danil42russia/python3.13_support"
+resolved_reference = "a2af399414fd0fe7b0ed81a38a17e0a5838e1836"
 
 [[package]]
 name = "yarl"
@@ -884,4 +884,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "d9093e0e8c1b88c0339b7dfdec16ad632345a8e8e677f729b693acca064f364d"
+content-hash = "5d5f4e4dad93069b80d7a0d41d3962f4526a3ad211e3277210436fa9cbf31e26"
