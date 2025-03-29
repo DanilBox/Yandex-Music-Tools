@@ -1,15 +1,21 @@
-[tool.poetry]
+[project]
 name = "yandex-music-tools"
 version = "1.0.0"
 description = "Yandex Music Tools"
-authors = ["Danil Ovchinnikov <Danil42Worker@gmail.com>"]
+authors = [
+    { name = "Danil Ovchinnikov", email = "danil42worker@gmail.com" }
+]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/DanilBox/Yandex-Music-Tools"
+requires-python = "^3.13"
 
-[tool.poetry.dependencies]
-python = "^3.13"
-yandex-music = {git = "https://github.com/Danil42Russia/yandex-music-api.git", rev = "danil42russia/python3.13_support"}
+dependencies = [
+    "yandex-music @ git+https://github.com/Danil42Russia/yandex-music-api.git@danil42russia/python3.13_support"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.15.0"
@@ -46,7 +52,3 @@ module = [
     'yandex_music.*',
 ]
 ignore_missing_imports = true
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
