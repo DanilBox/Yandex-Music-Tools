@@ -22,7 +22,8 @@ package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.15.0"
-ruff = "^0.11.7"
+ruff = "^0.11.9"
+ty = "^0.0.0a8"
 
 [tool.ruff]
 target-version = "py313"
