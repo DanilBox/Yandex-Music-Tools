@@ -21,9 +21,9 @@ build-backend = "poetry.core.masonry.api"
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.16.0"
-ruff = "^0.11.12"
-ty = "^0.0.1a7"
+mypy = "^1.17.1"
+ruff = "^0.12.8"
+ty = "^0.0.1a17"
 
 [tool.ruff]
 target-version = "py313"
@@ -37,14 +37,17 @@ exclude = [
 
 [tool.ruff.lint]
 select = [
-    "I",
-    "UP",
-    "PL",
-    "RUF",
+    "E", # pycodestyle
+    "F", # pyflakes
+    "I", # isort
+    "PL", # pylint
+    "RUF", # ruff-specific-rules
+    "UP", # pyupgrade
 ]
 ignore = [
     "RUF001",
     "RUF002",
+    "PLC0415",
 ]
 
 [tool.mypy]

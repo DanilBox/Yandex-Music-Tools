@@ -1,4 +1,3 @@
-from collections.abc import Callable
 from typing import NamedTuple
 
 from yandex_music import Artist, Track
@@ -26,8 +25,8 @@ def show_artist(artists: list[Artist]) -> str:
 
 
 def sort_track_list(track: list[Track]) -> list[Track]:
-    sort_artists: Callable[[list[Artist]], str] = lambda artists: show_artist(artists)
-    sort_tract: Callable[[Track], str] = lambda _track: sort_artists(_track.artists)
+    def sort_tract(_track: Track) -> str:
+        return show_artist(_track.artists)
 
     return sorted(track, key=sort_tract, reverse=True)
 
