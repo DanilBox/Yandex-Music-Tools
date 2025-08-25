@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from typing import NamedTuple
 
 from yandex_music import Artist, Track
@@ -31,7 +32,7 @@ def sort_track_list(track: list[Track]) -> list[Track]:
     return sorted(track, key=sort_tract, reverse=True)
 
 
-def diff_tracks(tracks_from: list[Track], tracks_to: list[Track]) -> DiffResult:
+def diff_tracks(tracks_from: Sequence[Track], tracks_to: Sequence[Track]) -> DiffResult:
     return DiffResult(
         added_tracks=list(set(tracks_to) - set(tracks_from)),
         deleted_tracks=list(set(tracks_from) - set(tracks_to)),

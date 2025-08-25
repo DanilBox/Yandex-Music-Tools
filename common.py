@@ -1,6 +1,7 @@
 import datetime
 import json
 import sys
+from collections.abc import Sequence
 from enum import StrEnum
 from pathlib import Path
 
@@ -23,7 +24,7 @@ def get_date_saved_tracks() -> list[str]:
     return saved_date
 
 
-def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.date.today())) -> list[Track]:
+def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.date.today())) -> Sequence[Track]:
     track_file = SAVED_FOLDER / Path(f"{date}/{object_type}-{date}.json")
     if not track_file.exists():
         sys.exit(f"Файла '{track_file.name}' не существует")
@@ -32,7 +33,7 @@ def get_tracks_by_date(object_type: str | TrackType, date: str = str(datetime.da
     if len(data) == 0:
         return []
 
-    tracks: list[Track] = Track.de_list(data, null_client())
+    tracks: Sequence[Track] = Track.de_list(data, null_client())
     return tracks
 
 

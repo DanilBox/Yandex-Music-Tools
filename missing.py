@@ -1,4 +1,4 @@
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 from functools import cache
 
 from yandex_music import Track
@@ -9,7 +9,7 @@ from diff import diff_tracks, get_track_info
 
 
 @cache
-def get_tracks_by_date(date: str) -> list[Track]:
+def get_tracks_by_date(date: str) -> Sequence[Track]:
     """В обычной ситуации такой кейс не нужен. Сделано из-за повторного получения треков"""
     import common
 
