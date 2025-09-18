@@ -21,9 +21,9 @@ build-backend = "poetry.core.masonry.api"
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.17.1"
-ruff = "^0.12.10"
-ty = "^0.0.1a19"
+mypy = "^1.18.1"
+ruff = "^0.13.0"
+ty = "^0.0.1a20"
 
 [tool.ruff]
 target-version = "py313"
