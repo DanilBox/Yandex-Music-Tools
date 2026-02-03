@@ -1,10 +1,12 @@
-from collections.abc import Sequence
-from typing import NamedTuple
-
-from yandex_music import Artist, Track
+from typing import TYPE_CHECKING, NamedTuple
 
 from base_client import null_client
 from common import TrackType, get_parent_save_date, get_tracks_by_date
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from yandex_music import Artist, Track
 
 
 class DiffResult(NamedTuple):

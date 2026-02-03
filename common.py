@@ -1,13 +1,16 @@
 import datetime
 import json
 import sys
-from collections.abc import Sequence
 from enum import StrEnum
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from yandex_music import Track
 
 from base_client import null_client
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 SAVED_FOLDER = Path("tracks")
 

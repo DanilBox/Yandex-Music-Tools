@@ -2,11 +2,14 @@ import datetime
 import json
 import sys
 from pathlib import Path
-from types import MethodType
-
-from yandex_music import TracksList
+from typing import TYPE_CHECKING
 
 from base_client import base_client
+
+if TYPE_CHECKING:
+    from types import MethodType
+
+    from yandex_music import TracksList
 
 
 def save_json(content: str, object_type: str, date: str = str(datetime.date.today())) -> None:

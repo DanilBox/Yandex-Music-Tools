@@ -1,11 +1,14 @@
-from collections.abc import Iterator, Sequence
 from functools import cache
-
-from yandex_music import Track
+from typing import TYPE_CHECKING
 
 from common import TrackType, get_date_saved_tracks
 from config import get_config_section
 from diff import diff_tracks, get_track_info
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator, Sequence
+
+    from yandex_music import Track
 
 
 @cache
@@ -35,12 +38,18 @@ def main() -> None:
     last_saved_track = set(get_tracks_by_date(saved_folder[-1]))
 
     print("Пропавшие треки:")
+    missing_tracks_count = 0
     for missing_track in missing_tracks - last_saved_track:
         track_info = get_track_info(missing_track)
         if track_info in fingerprints:
             continue
 
+        missing_tracks_count += 1
         print(track_info)
+
+    print("\n")
+    print("СТАТИСТИКА:")
+    print(f"1. Количество пропавших треков: {missing_tracks_count}")
 
 
 if __name__ == "__main__":
