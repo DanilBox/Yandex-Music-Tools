@@ -9,7 +9,12 @@ def main() -> None:
     artists_counter: Counter[tuple[str, int]] = Counter()
     for track in tracks:
         for artist in track.artists:
-            artists_counter.update([(artist.name, artist.id)])
+            artist_name, artist_id = artist.name, artist.id
+            if artist_name is None or artist_id is None:
+                # Песня загружена руками
+                continue
+
+            artists_counter.update([(artist_name, artist_id)])
 
     print(f"Статистика по {artists_counter.total()} авторам:")
     for artist, count in artists_counter.most_common():

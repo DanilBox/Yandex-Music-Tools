@@ -16,8 +16,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
-    "ruff>=0.14.14",
-    "ty>=0.0.14",
+    "ruff>=0.15.4",
+    "ty>=0.0.19",
 ]
 
 [tool.ruff]
@@ -37,8 +37,8 @@ select = [
     "I", # isort
     "PL", # pylint
     "RUF", # ruff-specific-rules
-    "UP",
-    "TC"# pyupgrade
+    "UP", # pyupgrade
+    "TC", # flake8-type-checking
 ]
 ignore = [
     "RUF001",
