@@ -15,9 +15,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "mypy>=1.19.1",
-    "ruff>=0.15.7",
-    "ty>=0.0.24",
+    "mypy>=1.20.1",
+    "ruff>=0.15.10",
+    "ty>=0.0.29",
 ]
 
 [tool.ruff]
@@ -56,3 +56,6 @@ module = [
     'yandex_music.*',
 ]
 ignore_missing_imports = true
+
+[tool.uv]
+exclude-newer = "1 week"
