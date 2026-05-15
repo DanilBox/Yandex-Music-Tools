@@ -10,14 +10,14 @@ readme = "README.md"
 requires-python = ">=3.14"
 
 dependencies = [
-    "yandex-music @ git+https://github.com/Danil42Russia/yandex-music-api.git@danil42russia/python3.13_support",
+    "yandex-music>=3.0.0",
 ]
 
 [dependency-groups]
 dev = [
-    "mypy>=1.20.1",
-    "ruff>=0.15.10",
-    "ty>=0.0.29",
+    "mypy>=2.0.0",
+    "ruff>=0.15.12",
+    "ty>=0.0.34",
 ]
 
 [tool.ruff]

@@ -27,7 +27,10 @@ def base_client() -> Client:
     if (status := client.account_status()) is None:
         sys.exit("Ошибка при получение аккаунта")
 
-    if status.account.login is None:
+    if (account := status.account) is None:
+        sys.exit("")
+
+    if account.login is None:
         sys.exit("Ошибка при получение аккаунта")
 
     return client
