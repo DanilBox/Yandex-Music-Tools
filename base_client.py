@@ -25,12 +25,12 @@ def base_client() -> Client:
     client = new_client(token).init()
 
     if (status := client.account_status()) is None:
-        sys.exit("Ошибка при получение аккаунта")
+        sys.exit("Ошибка при получение статуса аккаунта")
 
     if (account := status.account) is None:
-        sys.exit("")
+        sys.exit("Ошибка при получение аккаунта")
 
     if account.login is None:
-        sys.exit("Ошибка при получение аккаунта")
+        sys.exit("Ошибка при логина аккаунта")
 
     return client

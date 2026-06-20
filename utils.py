@@ -1,7 +1,7 @@
 import os
 import sys
 from pathlib import Path
-from typing import Any, TextIO
+from typing import TextIO
 
 
 class HiddenPrints:
@@ -11,7 +11,7 @@ class HiddenPrints:
         self._original_stdout: TextIO = sys.stdout
         sys.stdout = self.devnull.open("w")
 
-    def __exit__(self, *args: Any) -> None:
+    def __exit__(self, *args: object) -> None:
         sys.stdout.close()
         sys.stdout = self._original_stdout
 

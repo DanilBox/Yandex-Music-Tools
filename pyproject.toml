@@ -16,8 +16,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy>=2.1.0",
-    "ruff>=0.15.13",
-    "ty>=0.0.37",
+    "ruff>=0.15.17",
+    "ty>=0.0.49",
 ]
 
 [tool.ruff]
@@ -40,6 +40,7 @@ select = [
     "UP", # pyupgrade
     "TC", # flake8-type-checking
     "PTH", # flake8-use-pathlib,
+    "PYI", # flake8-pyi
 ]
 ignore = [
     "RUF001",
