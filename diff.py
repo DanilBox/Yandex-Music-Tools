@@ -24,7 +24,7 @@ class DiffResult(NamedTuple):
 
 
 def show_artist(artists: list[Artist]) -> str:
-    return ", ".join(sorted([artist.name for artist in artists]))
+    return ", ".join(sorted([artist.name for artist in artists if artist.name is not None]))
 
 
 def sort_track_list(track: list[Track]) -> list[Track]:

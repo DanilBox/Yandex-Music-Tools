@@ -15,9 +15,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "mypy>=2.1.0",
-    "ruff>=0.15.17",
-    "ty>=0.0.49",
+    "mypy>=2.4.0",
+    "ruff>=0.17.1",
+    "ty>=0.0.90",
 ]
 
 [tool.ruff]
@@ -59,4 +59,4 @@ module = [
 ignore_missing_imports = true
 
 [tool.uv]
-exclude-newer = "1 week"
+exclude-newer = "5 day"
